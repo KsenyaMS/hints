@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import {Button, Card, Col, Form, Input, Row, Space} from "antd";
-import { Area, AreaChart, Bar, CartesianGrid, Cell, ComposedChart, Label, Legend, Line, Pie, PieChart, Tooltip, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, Bar, ComposedChart, Line, Pie, PieChart, Tooltip, XAxis, YAxis } from "recharts";
 import "../recharts/RechartsPage.css"
+import ConfirmationButtonAntd from "../../buttons/ConfirmationButtonAntd";
+import CancelButtonAntd from "../../buttons/CancelButtonAntd";
 
 const rowStyle = {padding: '4px'};
 
@@ -10,17 +12,6 @@ export default function DinamicGraphs({onChange}) {
   let [names, setNames] = useState([]);
   let [data, setData] = useState([]);
   let [value, setValue] = useState([]);
-
-  // const data = [
-  //   { name: 'C1', value: 100, value2: 50 },
-  //   { name: 'C2', value: 20, value2: 200 },
-  //   { name: 'C3', value: 300, value2: 30 },
-  //   { name: 'C4', value: 90, value2: 70 },
-  // ];
-
-  const colors = ['#b300ad', '#d2ff57', '#e30088', '#1b3fc2'];
-
-  
 
   const onFinish = (values) => {
     let count = values.count;
@@ -40,7 +31,7 @@ export default function DinamicGraphs({onChange}) {
     let items = [];
     for (let i = 0; i < names.length; i++) {
       let params = {
-        name: names[i].nameX,
+        name: Number(names[i].nameX),
         value: data[names[i].nameX]
       }
       items = [...items, params];
@@ -101,8 +92,8 @@ export default function DinamicGraphs({onChange}) {
               );
             })}
             <Space style={{marginLeft: "20%", marginTop: 20}} wrap direction="horizontal">
-              <Button style={{backgroundColor: "#435ebf", color: "white", borderRadius: 15}} onClick={handleInputs}>Oк</Button>
-              <Button style={{borderRadius: 15, background: "#F4F4F9", borderColor: "#435ebf", color: "#435ebf"}} onClick={() => {setState(true)}}>Вернуться</Button>
+              <ConfirmationButtonAntd value="Ок" onClick={handleInputs}/>
+              <CancelButtonAntd value="Вернуться" onClick={() => {setState(true)}}/>
             </Space>
           </Card>
         </div>

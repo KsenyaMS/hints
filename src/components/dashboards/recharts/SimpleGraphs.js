@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {Card} from "antd";
 import { Area, AreaChart, Bar, CartesianGrid, Cell, ComposedChart, Label, Legend, Line, Pie, PieChart, Tooltip, XAxis, YAxis } from "recharts";
 import "../recharts/RechartsPage.css"
