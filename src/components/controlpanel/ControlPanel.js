@@ -6,6 +6,7 @@ import './ControlPanel.css'
 import {LogoutOutlined, BarChartOutlined, RightOutlined, LeftOutlined, UnorderedListOutlined} from "@ant-design/icons";
 import DashbordsPage from "../dashboards/DashboardsPage";
 import DragAndDropPage from "../draganddrop/DragAndDropPage";
+import DragList from "../draganddrop/DragList";
 
 const {Header, Sider, Content, Footer} = Layout;
 const {Text} = Typography;
@@ -81,7 +82,7 @@ export default function ControlPanel(props) {
     } else if(activeRouteKey === "drag_and_drop") {
       return (
         <Route path={`${path}/dashboards`} key="drag_and_drop">
-          <DragAndDropPage/>
+          <DragList/>
         </Route>
       )
     }
