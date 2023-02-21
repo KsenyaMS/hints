@@ -9,7 +9,6 @@ const ListGrid = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 8px`;
 
-// fake data generator
 const getItems = (count, prefix) =>
   Array.from({ length: count }, (v, k) => k).map((k) => {
     const randomId = Math.floor(Math.random() * 1000);

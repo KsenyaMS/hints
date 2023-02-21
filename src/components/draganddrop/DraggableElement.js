@@ -14,8 +14,6 @@ const DroppableStyles = styled.div`
   background-color: #F4F4F9`;
 
 const DraggableElement = ({ elements, key, prefix }) => (
-  <>
-  {/* <Button onClick={() => {console.log({elements});}}>DDDD</Button> */}
   <DroppableStyles>
     <ColumnHeader>{prefix}</ColumnHeader>
     <Droppable key={prefix} droppableId={prefix}>
@@ -29,7 +27,6 @@ const DraggableElement = ({ elements, key, prefix }) => (
       )}
     </Droppable>
   </DroppableStyles>
-  </>
 );
 
 export default DraggableElement;

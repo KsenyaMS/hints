@@ -1,7 +1,6 @@
 import { Draggable } from "react-beautiful-dnd";
 import React from "react";
 import styled, { css } from "styled-components";
-import { Button } from "antd";
 import "./DragList.css";
 
 const CardHeader = styled.div`
@@ -22,8 +21,6 @@ const CardFooter = styled.div`
 const ListItem = ({ key, index, item }) => {
 
   return (
-    <>
-    {/* <Button onClick={() => {console.log(item.id);}}>rrrrR</Button> */}
     <Draggable key={item.id} index={index} draggableId={item.id}>
       {(provided, snapshot) => {
         return (
@@ -46,7 +43,6 @@ const ListItem = ({ key, index, item }) => {
         );
       }}
     </Draggable>
-    </>
   );
 };
 
