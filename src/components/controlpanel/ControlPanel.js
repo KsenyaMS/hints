@@ -82,7 +82,7 @@ export default function ControlPanel(props) {
     } else if(activeRouteKey === "drag_and_drop") {
       return (
         <Route path={`${path}/dashboards`} key="drag_and_drop">
-          <DragList/>
+          <DragAndDropPage/>
         </Route>
       )
     }

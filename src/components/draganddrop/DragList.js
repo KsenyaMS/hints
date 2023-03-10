@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import DraggableElement from "./DraggableElement";
-import { Button } from "antd";
+import { Typography } from "antd";
 
 const ListGrid = styled.div`
   display: grid;
@@ -72,17 +72,22 @@ function DragList() {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <ListGrid>
-        {lists.map((listKey) => (
-          <DraggableElement
-            elements={elements[listKey]}
-            key={listKey}
-            prefix={listKey}
-          />
-        ))}
-      </ListGrid>
-    </DragDropContext>
+    <>
+      <Typography.Title level={5} style={{ margin: 10, marginBottom: 20 }}>
+        Перетаскивание между списками
+      </Typography.Title>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <ListGrid>
+          {lists.map((listKey) => (
+            <DraggableElement
+              elements={elements[listKey]}
+              key={listKey}
+              prefix={listKey}
+            />
+          ))}
+        </ListGrid>
+      </DragDropContext>
+    </>
   );
 }
 
