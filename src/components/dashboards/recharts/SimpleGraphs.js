@@ -18,7 +18,7 @@ export default function SimpleGraphs() {
     <>
       <div class="flexbox-container">
         <div style={{width: '50%', float: 'left', margin: 15}}>
-          <Card style={{borderRadius: 4}}>
+          <Card style={{borderRadius: 4, width: "100%"}}>
             <AreaChart
               width={550}
               height={200}
@@ -45,9 +45,6 @@ export default function SimpleGraphs() {
               <YAxis>
               </YAxis>
               <Tooltip />
-                <>
-                  {/* <Bar dataKey="value" name="Данные" barSize={20} fill="#D35858" /> */}
-                </>
                 <>
                   <Area type="monotone" dataKey="value2" name="Данные" stroke="#1b3fc2" fillOpacity={1} fill="url(#graph2)"  />
                   <Area type="monotone" dataKey="value" name="Данные" stroke="#e30088" fillOpacity={1} fill="url(#graph)"  />
@@ -80,9 +77,6 @@ export default function SimpleGraphs() {
                 </linearGradient>
               </defs>
               <Tooltip />
-                <>
-                  {/* <Bar dataKey="value" name="Данные" barSize={20} fill="#D35858" /> */}
-                </>
                 <>
                   <Area type="monotone" dataKey="value2" name="Данные" stroke="#1b3fc2" fillOpacity={1} fill="url(#graph2)"  />
                   <Area type="monotone" dataKey="value" name="Данные" stroke="#e30088" fillOpacity={1} fill="url(#graph)"  />
