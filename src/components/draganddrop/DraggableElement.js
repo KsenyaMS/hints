@@ -2,7 +2,7 @@ import { Droppable } from "react-beautiful-dnd";
 import ListItem from "./ListItem";
 import React from "react";
 import styled from "styled-components";
-import { Button } from "antd";
+import { FormattedMessage } from "react-intl";
 
 const ColumnHeader = styled.div`
   text-transform: uppercase;
@@ -15,7 +15,7 @@ const DroppableStyles = styled.div`
 
 const DraggableElement = ({ elements, key, prefix }) => (
   <DroppableStyles>
-    <ColumnHeader>{prefix}</ColumnHeader>
+    <ColumnHeader>{prefix === "inProgress" ? <FormattedMessage id="in_progress" /> : (prefix === "done" ? <FormattedMessage id="done" /> : (prefix === "todo" ? <FormattedMessage id="to_do" /> : ""))}</ColumnHeader>
     <Droppable key={prefix} droppableId={prefix}>
       {(provided) => (
         <div style = {{...provided.droppableProps}} ref={provided.innerRef}>

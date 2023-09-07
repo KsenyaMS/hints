@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { FormattedMessage } from "react-intl";
 import MenuButton from "../../buttons/MenuButton";
 import "../recharts/RechartsPage.css"
 import DinamicGraphs from "./DinamicGraphs";
@@ -10,10 +11,8 @@ export default function RechartsPage() {
   return (
     <>
       <div className="scrolling-wrapper-flexbox" style={{marginBottom: 16}}>
-        <MenuButton value = "Простые графики" statusBtn={state.activeTabKey === "1"} onClick={() => {setState({...state, activeTabKey: "1", update: state.update + 1});}}/>
-        <MenuButton value = "Динамические графики" statusBtn={state.activeTabKey === "2"} onClick={() => {setState({...state, activeTabKey: "2", update: state.update + 1});}}/>
-        {/* <MenuButton value = "Расходы" statusBtn={state.activeTabKey === "3"} onClick={() => {setState({...state, activeTabKey: "3", update: state.update + 1}); onChange([]);}}/>
-        <MenuButton value = "Бюджет" statusBtn={state.activeTabKey === "4"} onClick={() => {setState({...state, activeTabKey: "4", update: state.update + 1}); onChange([]);}}/> */}
+        <MenuButton value={<FormattedMessage id="simple_charts_text" />} statusBtn={state.activeTabKey === "1"} onClick={() => {setState({...state, activeTabKey: "1", update: state.update + 1});}}/>
+        <MenuButton value={<FormattedMessage id="dinamic_charts_text" />} statusBtn={state.activeTabKey === "2"} onClick={() => {setState({...state, activeTabKey: "2", update: state.update + 1});}}/>
       </div>
       {state.activeTabKey === "1" && (
         <SimpleGraphs/>

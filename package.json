@@ -1,5 +1,6 @@
 {
   "name": "hints",
+  "homepage": "https://KsenyaMS.github.io/hints",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,10 +12,12 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.2.0",
+    "gh-pages": "^6.0.0",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
+    "react-intl": "^6.2.10",
     "react-router-dom": "^5.3.0",
     "react-scripts": "5.0.1",
     "recharts": "^2.4.1",
@@ -22,6 +25,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

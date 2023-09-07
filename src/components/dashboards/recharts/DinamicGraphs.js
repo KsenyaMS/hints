@@ -1,19 +1,21 @@
 import React, {useState} from "react";
 import {Button, Card, Col, Form, Input, Row, Space} from "antd";
-import { Area, AreaChart, Bar, ComposedChart, Line, Pie, PieChart, Tooltip, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from "recharts";
 import "../recharts/RechartsPage.css"
 import ConfirmationButtonAntd from "../../buttons/ConfirmationButtonAntd";
 import CancelButtonAntd from "../../buttons/CancelButtonAntd";
+import { FormattedMessage } from "react-intl";
 
 const rowStyle = {padding: '4px'};
 
-export default function DinamicGraphs({onChange}) {
+export default function DinamicGraphs() {
   let [state, setState] = useState(true);
   let [names, setNames] = useState([]);
   let [data, setData] = useState([]);
   let [value, setValue] = useState([]);
 
   const onFinish = (values) => {
+    console.log(<FormattedMessage id="warning_number_of_points" />);
     let count = values.count;
     let items = [];
     for (let i = 0; i < count; i++) {
@@ -32,7 +34,7 @@ export default function DinamicGraphs({onChange}) {
     for (let i = 0; i < names.length; i++) {
       let params = {
         name: Number(names[i].nameX),
-        value: data[names[i].nameX]
+        value: Number(data[names[i].nameX])
       }
       items = [...items, params];
     }
@@ -47,12 +49,12 @@ export default function DinamicGraphs({onChange}) {
           <Card style={{borderRadius: 4}}>
             <Form onFinish={onFinish}>
               <Form.Item
-                label="Количество точек"
+                label={<FormattedMessage id="number_of_points" />}
                 name="count"
                 rules={[
                   {
                     required: true,
-                    message: 'Пожалуйста, введите количество точек!',
+                    message: <FormattedMessage id="warning_number_of_points" />,
                   },
                 ]}
               >
@@ -65,7 +67,7 @@ export default function DinamicGraphs({onChange}) {
                 }}
               >
                 <Button style={{backgroundColor: "#435ebf", color: "white", borderRadius: 15}} htmlType="submit">
-                  Oк
+                  {<FormattedMessage id="ok_text" />}
                 </Button>
               </Form.Item>
             </Form>
@@ -92,8 +94,8 @@ export default function DinamicGraphs({onChange}) {
               );
             })}
             <Space style={{marginLeft: "20%", marginTop: 20}} wrap direction="horizontal">
-              <ConfirmationButtonAntd value="Ок" onClick={handleInputs}/>
-              <CancelButtonAntd value="Вернуться" onClick={() => {setState(true)}}/>
+              <ConfirmationButtonAntd value={<FormattedMessage id="ok_text" />} onClick={handleInputs}/>
+              <CancelButtonAntd value={<FormattedMessage id="return_text" />} onClick={() => {setState(true)}}/>
             </Space>
           </Card>
         </div>

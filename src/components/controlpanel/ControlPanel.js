@@ -1,22 +1,20 @@
 import React, {useState} from "react";
 import {isMobile} from 'react-device-detect';
-import {Link, Redirect, Route, Switch, useRouteMatch, useHistory} from "react-router-dom";
-import {Layout, Menu, message, Divider, Tooltip, Dropdown, Typography, ConfigProvider} from 'antd';
+import {Link, Redirect, Route, Switch, useRouteMatch} from "react-router-dom";
+import {Layout, Menu, Divider, Typography, ConfigProvider, Dropdown, Button} from 'antd';
 import './ControlPanel.css'
 import {LogoutOutlined, BarChartOutlined, RightOutlined, LeftOutlined, UnorderedListOutlined} from "@ant-design/icons";
 import DashbordsPage from "../dashboards/DashboardsPage";
 import DragAndDropPage from "../draganddrop/DragAndDropPage";
-import DragList from "../draganddrop/DragList";
+import { FormattedMessage } from "react-intl";
+import { LOCALES } from "../../i18n/locales";
 
 const {Header, Sider, Content, Footer} = Layout;
 const {Text} = Typography;
 
-export default function ControlPanel(props) {
+export default function ControlPanel({onClick}) {
   let [collapsed, setCollapsed] = useState(false);
   let [activeRouteKey, setActiveRouteKey] = useState("dashboards");
-  let [notification, setNotification] = useState([]);
-
-  const history = useHistory();
 
   let {path, url} = useRouteMatch();
 
@@ -49,23 +47,14 @@ export default function ControlPanel(props) {
               : <Menu.Item key="collapsed" style={{paddingLeft: "45%", color: "white"}} icon={<LeftOutlined/>}/>
           }
           <Menu.Item style={{color: "white"}} key="dashboards" icon={<BarChartOutlined />}>
-            <Link to={`${url}/dashboards`}>Дашборды</Link>
+            <Link to={`${url}/dashboards`}>{<FormattedMessage id="dashboard_text" />}</Link>
           </Menu.Item>
           <Menu.Item style={{color: "white"}} key="drag_and_drop" icon={<UnorderedListOutlined />}>
-            <Link to={`${url}/drag_and_drop`}>Списки</Link>
+            <Link to={`${url}/drag_and_drop`}>{<FormattedMessage id="list_text" />}</Link>
           </Menu.Item>
-          {/* <Menu.Item className="menu-background" key="ads" icon={<UnorderedListOutlined />}>
-            <Link to={`${url}/ads`}>Объявления</Link>
-          </Menu.Item>
-          <Menu.Item className="menu-background" key="scheduled_services" icon={<BookOutlined />}>
-            <Link to={`${url}/scheduled_services`}>Услуги</Link>
-          </Menu.Item>
-          <Menu.Item className="menu-background" key="settings" icon={<SettingOutlined />}>
-            <Link to={`${url}/personal_cabinets`}>Настройки</Link>
-          </Menu.Item> */}
           <Menu.Divider/>
-          <Menu.Item key="100" style={{color: "white"}} title="Выход" icon={<LogoutOutlined/>}>
-              Выход
+          <Menu.Item key="100" style={{color: "white"}} title={<FormattedMessage id="exit_text" />} icon={<LogoutOutlined/>}>
+            {<FormattedMessage id="exit_text" />}
           </Menu.Item>
         </Menu>
       </ConfigProvider>
@@ -81,7 +70,7 @@ export default function ControlPanel(props) {
       )
     } else if(activeRouteKey === "drag_and_drop") {
       return (
-        <Route path={`${path}/dashboards`} key="drag_and_drop">
+        <Route path={`${path}/drag_and_drop`} key="drag_and_drop">
           <DragAndDropPage/>
         </Route>
       )
@@ -100,52 +89,9 @@ export default function ControlPanel(props) {
     }
   };
 
-//   const handleNotified = (data, notificationType) => {
-//     let ids = notificationType === "ads" ? data.map((s) => s.avito_id) : data.map((s) => s.id);
-//     apiClient.setNotified(ids.toString().replaceAll(',',';'), notificationType)
-//       .then(res => {
-//         message.success("Оповещения отмечены как просмотренные!");
-//         if (notificationType === "services") {
-//           apiClient.getPlannedServices()
-//             .then(res => {
-//               let notAppliedServices = res.filter((s) => s.not_applied_user_notified === false);
-//               setNotAppliedServices({...notAppliedServices, ...{
-//                 services: notAppliedServices,
-//                 count: notAppliedServices ? notAppliedServices.length : 0
-//               }});
-//             })
-//             .catch(err => message.error(err));
-//         }
-//         if (notificationType === "ads") {
-//           apiClient.getAds()
-//             .then(res => {
-//               let notEffectiveAds = res.filter((s) => s.low_efficiency_user_notified === false);
-//               setNotEffectiveAds({...notEffectiveAds, ...{
-//                 ads: notEffectiveAds,
-//                 count: notEffectiveAds ? notEffectiveAds.length : 0
-//               }});
-//             })
-//             .catch(err => message.error(err));
-//         }
-//         if (notificationType === "budget") {
-//           apiClient.getBudget()
-//             .then(res => {
-//               let exceededBudget = res.filter((s) => s.user_notified === false && s.spent_budget > s.money_restriction);
-//               setExceededBudget({...exceededBudget, ...{
-//                 budget: exceededBudget,
-//                 count: exceededBudget ? exceededBudget.length : 0
-//               }});
-//             })
-//             .catch(err => message.error(err));
-//         }
-//       })
-//       .catch(err => message.error(err));
-//   };
-
   return (
     <div>
       <Layout style={{minHeight: '100vh'}}>
-        <Layout>
           <Sider style={{backgroundColor: "#b300ad"}} width={210} collapsed={collapsed}>
             {
               systemMenu()
@@ -153,7 +99,32 @@ export default function ControlPanel(props) {
           </Sider>
           <Layout className="site-layout" style={isMobile ? {width: "1600px"} : {}}>
             <Header style={isMobile ? {width: "1600px", backgroundColor: "white"} : {width: "100%", backgroundColor: "white"}}>
-                  
+              <div style={{float: "right"}}>
+              <Dropdown style={{width: "210px"}}
+                overlay={(
+                  <Menu onClick={(e) => {onClick(e.key)}}>
+                    <Menu.Item key={LOCALES.ENGLISH}>
+                      <FormattedMessage id="english" />
+                    </Menu.Item>
+                    <Menu.Item key={LOCALES.JAPANESE}>
+                      <FormattedMessage id="japanese" />
+                    </Menu.Item>
+                    <Menu.Item key={LOCALES.FRENCH}>
+                      <FormattedMessage id="german" />
+                    </Menu.Item>
+                    <Menu.Item key={LOCALES.GERMAN}>
+                      <FormattedMessage id="french" />
+                    </Menu.Item>
+                    <Menu.Item key={LOCALES.RUSSIAN}>
+                      <FormattedMessage id="russian" />
+                    </Menu.Item>
+                  </Menu>
+                )}>
+                <Button style={{width: "190px", textAlign: "left", borderRadius: "15px"}}>
+                  <FormattedMessage id="select_a_language" />
+                </Button>
+              </Dropdown>
+              </div>
             </Header>
             <Divider style={{marginTop: '0px'}}/>
             <Content style={isMobile ? {margin: '10px', width: "1600px"} : {margin: '10px'}}>
@@ -169,7 +140,6 @@ export default function ControlPanel(props) {
             <Footer style={isMobile ? {textAlign: 'right', fontSize: '0.8em', width: "1600px"} : {textAlign: 'right', fontSize: '0.8em'}}>Тестовый сайт</Footer>
           </Layout>
         </Layout>
-      </Layout>
     </div>
   );
 }

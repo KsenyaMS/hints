@@ -1,7 +1,8 @@
 import { Draggable } from "react-beautiful-dnd";
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import "./DragList.css";
+import { FormattedMessage } from "react-intl";
 
 const CardHeader = styled.div`
   font-weight: 500;
@@ -31,8 +32,8 @@ const ListItem = ({ key, index, item }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <CardHeader>Header</CardHeader>
-            <span>Content</span>
+            <CardHeader><FormattedMessage id="header" /></CardHeader>
+            <span><FormattedMessage id="content" /></span>
             <CardFooter>
               <span>{item.content}</span>
               <Author>

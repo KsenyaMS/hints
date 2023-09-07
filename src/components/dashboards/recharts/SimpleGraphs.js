@@ -120,9 +120,6 @@ export default function SimpleGraphs() {
               </XAxis>
               <Tooltip />
                 <>
-                  {/* <Bar dataKey="value" name="Данные" barSize={20} fill="#D35858" /> */}
-                </>
-                <>
                   <Area type="monotone" dataKey="value2" name="Данные" stroke="#1b3fc2" fillOpacity={1} fill="url(#graph2)"  />
                   <Area type="monotone" dataKey="value" name="Данные" stroke="#e30088" fillOpacity={1} fill="url(#graph)"  />
                 </>
@@ -152,9 +149,6 @@ export default function SimpleGraphs() {
                   <Bar dataKey="value" name="Данные" barSize={20} fill="#d2ff57" />
                   <Bar dataKey="value2" name="Данные" barSize={20} fill="#e30088" />
                 </>
-                <>
-                  {/* <Line type="monotone" dataKey="value" name="Данные" stroke="#FACC2B" /> */}
-                </>
               
             </ComposedChart>
           </Card>
@@ -182,9 +176,6 @@ export default function SimpleGraphs() {
                 <>
                 <Bar dataKey="value" name="Данные" barSize={20} fill="#d2ff57" />
                   <Bar dataKey="value2" name="Данные" barSize={20} fill="#e30088" />
-                </>
-                <>
-                  {/* <Line type="monotone" dataKey="value" name="Данные" stroke="#FACC2B" /> */}
                 </>
               
             </ComposedChart>

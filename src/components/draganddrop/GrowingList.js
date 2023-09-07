@@ -5,24 +5,22 @@ import { Button, Typography } from "antd";
 import "./GrowingList.css"
 import ConfirmationButtonAntd from "../buttons/ConfirmationButtonAntd";
 import CreateElementDialog from "./CreateElementDialog";
+import { FormattedMessage } from "react-intl";
 const { Text } = Typography;
 
 export default function GrowingList() {
   let [state, setState] = useState([
-    { index: 0, id: "1", name: 'C1', value: 100, moneySpent: 50 },
-    { index: 1, id: "2", name: 'C2', value: 20, moneySpent: 200 },
-    { index: 2, id: "3", name: 'C3', value: 300, moneySpent: 30 },
-    { index: 3, id: "4", name: 'C4', value: 90, moneySpent: 70 },
+    { index: 1, id: "1", name: 'C1', value: 100, moneySpent: 50 },
+    { index: 2, id: "2", name: 'C2', value: 20, moneySpent: 200 },
+    { index: 3, id: "3", name: 'C3', value: 300, moneySpent: 30 },
+    { index: 4, id: "4", name: 'C4', value: 90, moneySpent: 70 },
   ]);
   let [visible, setVisible] = useState(false);
 
   const onDragEnd = (result) => {
     let newItems = [...state];
     let [removed] = newItems.splice(result.source.index, 1);
-    // console.log({result});
-    // console.log({removed});
     newItems.splice(result.destination.index, 0, removed);
-    // console.log({newItems});
     setState(newItems)
   };
 
@@ -36,7 +34,7 @@ export default function GrowingList() {
       moneySpent: Number(params.moneySpent)
     };
     items = [...items, res];
-    // console.log({items});
+    console.log({items});
     setState(items);
   };
   
@@ -44,7 +42,6 @@ export default function GrowingList() {
     let items = [...state];
     let element = items.find((s) => s.id === value);
     items.splice(element.index, 1);
-    console.log({items});
     setState(items);
   };
 
@@ -53,11 +50,11 @@ export default function GrowingList() {
       <div class="flexbox-container">
         <div style={{width: '80%', float: 'left'}} >
           <Typography.Title level={5} style={{ margin: 10, marginBottom: 20 }}>
-            Пополняемый список
+            <FormattedMessage id="growing_list" />
           </Typography.Title>
         </div>
           <div style={{width: '20%', float: 'right'}}>
-            <ConfirmationButtonAntd value="Добавить" onClick={() => {setVisible(true)}}/>
+            <ConfirmationButtonAntd value={<FormattedMessage id="add_text" />} onClick={() => {setVisible(true)}}/>
           </div>
       </div>
       <Text></Text>
@@ -93,10 +90,10 @@ export default function GrowingList() {
                           </div>
                           <div style={{width: "100%"}}>
                             <div style={{float: "left", width: "50%"}}>
-                              <span>На счету: {item.value} руб.</span>
+                              <span><FormattedMessage id="on_the_account" />: {item.value} руб.</span>
                             </div>
                             <div style={{float: "right", width: "50%"}}>
-                              <span>Потрачено: {item.moneySpent} руб.</span>
+                              <span><FormattedMessage id="spent" />: {item.moneySpent} руб.</span>
                             </div>
                           </div>
                         </div>  

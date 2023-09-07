@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import DraggableElement from "./DraggableElement";
 import { Typography } from "antd";
+import { FormattedMessage } from "react-intl";
 
 const ListGrid = styled.div`
   display: grid;
@@ -15,7 +16,7 @@ const getItems = (count, prefix) =>
     return {
       id: `item-${randomId}`,
       prefix: prefix,
-      content: prefix === "inProgress" ? "В работе" : (prefix === "done" ? "Закончена" : (prefix === "todo" ? "Задача создана" : ""))
+      content: prefix === "inProgress" ? <FormattedMessage id="in_progress" /> : (prefix === "done" ? <FormattedMessage id="done" /> : (prefix === "todo" ? <FormattedMessage id="to_do" /> : ""))
     };
   });
 
@@ -42,10 +43,6 @@ const generateLists = () =>
 function DragList() {
   const [elements, setElements] = useState(generateLists());
 
-  // useEffect(() => {
-  //   setElements(generateLists());
-  // }, []);
-
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
@@ -57,9 +54,9 @@ function DragList() {
       sourceList,
       result.source.index
     );
-    removedElement.content = result.destination.droppableId === "todo" ? "Задача создана"
-    : result.destination.droppableId === "inProgress" ? "В работе"
-    : result.destination.droppableId === "done" ? "Закончена" : "";
+    removedElement.content = result.destination.droppableId === "todo" ? <FormattedMessage id="to_do" />
+    : result.destination.droppableId === "inProgress" ? <FormattedMessage id="in_progress" />
+    : result.destination.droppableId === "done" ? <FormattedMessage id="done" /> : "";
     listCopy[result.source.droppableId] = newSourceList;
     const destinationList = listCopy[result.destination.droppableId];
     listCopy[result.destination.droppableId] = addToList(
@@ -74,7 +71,7 @@ function DragList() {
   return (
     <>
       <Typography.Title level={5} style={{ margin: 10, marginBottom: 20 }}>
-        Перетаскивание между списками
+        {<FormattedMessage id="dragging_between_lists" />}
       </Typography.Title>
       <DragDropContext onDragEnd={onDragEnd}>
         <ListGrid>
