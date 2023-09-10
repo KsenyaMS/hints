@@ -45,7 +45,7 @@ export default function DinamicGraphs() {
   return (
     <>
       {state && (
-        <div style={{width: '30%', margin: "auto"}}>
+        <div style={{width: '40vw', margin: "auto"}}>
           <Card style={{borderRadius: 4}}>
             <Form onFinish={onFinish}>
               <Form.Item

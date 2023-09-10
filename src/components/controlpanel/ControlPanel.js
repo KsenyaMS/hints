@@ -100,30 +100,30 @@ export default function ControlPanel({onClick}) {
           <Layout className="site-layout" style={isMobile ? {width: "1600px"} : {}}>
             <Header style={isMobile ? {width: "1600px", backgroundColor: "white"} : {width: "100%", backgroundColor: "white"}}>
               <div style={{float: "right"}}>
-              <Dropdown style={{width: "210px"}}
-                overlay={(
-                  <Menu onClick={(e) => {onClick(e.key)}}>
-                    <Menu.Item key={LOCALES.ENGLISH}>
-                      <FormattedMessage id="english" />
-                    </Menu.Item>
-                    <Menu.Item key={LOCALES.JAPANESE}>
-                      <FormattedMessage id="japanese" />
-                    </Menu.Item>
-                    <Menu.Item key={LOCALES.FRENCH}>
-                      <FormattedMessage id="german" />
-                    </Menu.Item>
-                    <Menu.Item key={LOCALES.GERMAN}>
-                      <FormattedMessage id="french" />
-                    </Menu.Item>
-                    <Menu.Item key={LOCALES.RUSSIAN}>
-                      <FormattedMessage id="russian" />
-                    </Menu.Item>
-                  </Menu>
-                )}>
-                <Button style={{width: "190px", textAlign: "left", borderRadius: "15px"}}>
-                  <FormattedMessage id="select_a_language" />
-                </Button>
-              </Dropdown>
+                <Dropdown style={{width: "210px"}}
+                  overlay={(
+                    <Menu onClick={(e) => {onClick(e.key)}}>
+                      <Menu.Item key={LOCALES.ENGLISH}>
+                        <FormattedMessage id="english" />
+                      </Menu.Item>
+                      <Menu.Item key={LOCALES.JAPANESE}>
+                        <FormattedMessage id="japanese" />
+                      </Menu.Item>
+                      <Menu.Item key={LOCALES.FRENCH}>
+                        <FormattedMessage id="german" />
+                      </Menu.Item>
+                      <Menu.Item key={LOCALES.GERMAN}>
+                        <FormattedMessage id="french" />
+                      </Menu.Item>
+                      <Menu.Item key={LOCALES.RUSSIAN}>
+                        <FormattedMessage id="russian" />
+                      </Menu.Item>
+                    </Menu>
+                  )}>
+                  <Button style={{width: "190px", textAlign: "left", borderRadius: "15px"}}>
+                    <FormattedMessage id="select_a_language" />
+                  </Button>
+                </Dropdown>
               </div>
             </Header>
             <Divider style={{marginTop: '0px'}}/>
@@ -137,7 +137,7 @@ export default function ControlPanel({onClick}) {
                 }
               </Switch>
             </Content>
-            <Footer style={isMobile ? {textAlign: 'right', fontSize: '0.8em', width: "1600px"} : {textAlign: 'right', fontSize: '0.8em'}}>Тестовый сайт</Footer>
+            <Footer className="footer">Тестовый сайт</Footer>
           </Layout>
         </Layout>
     </div>

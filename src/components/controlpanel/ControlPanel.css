@@ -7,3 +7,14 @@
     background: #b300ad;
     color: white;
 }
+
+.footer {
+	position: relative;
+    left:0;
+    bottom:0;
+    right:0;
+    background-color: #F4F4F9;
+    text-align: right;
+    min-height: 50px;
+    max-height: 50px;
+}
